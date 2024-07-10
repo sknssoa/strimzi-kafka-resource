@@ -1,0 +1,78 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaUser
+metadata:
+  name: user001
+  labels:
+    strimzi.io/cluster: my-cluster 
+spec:
+  authentication:
+    type: scram-sha-512 
+  authorization:
+    type: simple
+    acls: 
+      - resource:
+          type: topic
+          name: topic001
+          patternType: literal
+        operations:
+          - Write      
+          - Read
+          - Describe  
+      - resource:
+          type: group
+          name: my-group
+          patternType: literal
+        operations:
+          - Write
+          - Read
+          - Describe  
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaUser
+metadata:
+  name: user002
+  labels:
+    strimzi.io/cluster: my-cluster 
+spec:
+  authentication:
+    type: scram-sha-512 
+  authorization:
+    type: simple
+    acls: 
+      - resource:
+          type: topic
+          name: topic001
+          patternType: literal
+        operations:
+          - Write      
+          - Read
+          - Describe  
+      - resource:
+          type: group
+          name: my-group
+          patternType: literal
+        operations:
+          - Write
+          - Read
+          - Describe 
+---
+
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaUser
+metadata:
+  name: super-user
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  type: allow
+  authentication:
+    type: scram-sha-512 
+  authorization:
+    type: simple
+    acls:
+      - resource:
+          type: topic
+          name: '*'
+          patternType: literal
+        operations: 
+          - All

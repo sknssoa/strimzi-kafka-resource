@@ -1,0 +1,18 @@
+apiVersion: v2
+appVersion: 0.0.1
+description: 'Strimzi: Apache Kafka running on Kubernetes'
+
+keywords:
+- kafka
+- queue
+- stream
+- event
+- messaging
+- datastore
+- topic
+maintainers:
+- name: sknssoa
+name: strimzi-kafka-resource
+sources:
+- https://github.com/sknssoa/strimzi-kafka-resource
+version: 0.0.1
