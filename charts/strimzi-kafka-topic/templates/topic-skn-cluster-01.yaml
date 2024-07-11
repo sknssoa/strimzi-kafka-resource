@@ -1,9 +1,9 @@
 apiVersion: kafka.strimzi.io/v1beta1
 kind: KafkaTopic
 metadata:
-  name: topic001
+  name: skn-cluster-01-topic001
   labels:
-    strimzi.io/cluster: my-cluster
+    strimzi.io/cluster: skn-cluster-01
 spec:
   partitions: 1
   replicas: 1
@@ -15,9 +15,9 @@ spec:
 apiVersion: kafka.strimzi.io/v1beta1
 kind: KafkaTopic
 metadata:
-  name: topic002
+  name: skn-cluster-01-topic002
   labels:
-    strimzi.io/cluster: my-cluster
+    strimzi.io/cluster: skn-cluster-01
 spec:
   partitions: 1
   replicas: 1

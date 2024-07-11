@@ -76,3 +76,52 @@ spec:
           patternType: literal
         operations: 
           - All
+
+---
+
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaUser
+metadata:
+  name: my-cluster-super001
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  type: allow
+  authentication:
+    type: scram-sha-512 
+  authorization:
+    type: simple
+    acls:
+      - resource:
+          type: topic
+          name: '*'
+          patternType: literal
+        operations:
+          - Write
+          - Read
+          - Create
+          - Delete
+          - Alter
+          - Describe
+          - ClusterAction
+          - DescribeConfigs
+          - AlterConfigs
+      - resource:
+          type: group
+          name: '*'
+          patternType: literal
+        operations:
+          - Read
+          - Delete
+          - Describe
+      - resource:
+          type: cluster
+          name: '*'
+          patternType: literal
+        operations:
+          - Create
+          - Alter
+          - Describe
+          - ClusterAction
+          - DescribeConfigs
+          - AlterConfigs 
