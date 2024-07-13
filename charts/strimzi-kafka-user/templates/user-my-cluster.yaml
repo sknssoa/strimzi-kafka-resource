@@ -86,7 +86,6 @@ metadata:
   labels:
     strimzi.io/cluster: my-cluster
 spec:
-  type: allow
   authentication:
     type: scram-sha-512 
   authorization:
@@ -111,17 +110,27 @@ spec:
           name: '*'
           patternType: literal
         operations:
+          - Write
           - Read
+          - Create
           - Delete
+          - Alter
           - Describe
+          - ClusterAction
+          - DescribeConfigs
+          - AlterConfigs
       - resource:
           type: cluster
           name: '*'
           patternType: literal
         operations:
+          - Write
+          - Read
           - Create
+          - Delete
           - Alter
           - Describe
           - ClusterAction
           - DescribeConfigs
-          - AlterConfigs 
+          - AlterConfigs
+          - IdempotentWrite
