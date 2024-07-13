@@ -133,3 +133,38 @@ spec:
           type: topic
           name: heartbeats
         operation: Write
+
+
+---
+
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaUser
+metadata:
+  name: target-user-super
+  labels:
+    strimzi.io/cluster: target-cluster
+spec:
+  type: allow
+  authentication:
+    type: scram-sha-512 
+  authorization:
+    type: simple
+    acls:
+      - resource:
+          type: topic
+          name: '*'
+          patternType: literal
+        operations: 
+          - All
+      - resource:
+          type: group
+          name: '*'
+          patternType: literal
+        operations: 
+          - All
+      - resource:
+          type: cluster
+          name: '*'
+          patternType: literal
+        operations: 
+          - All
